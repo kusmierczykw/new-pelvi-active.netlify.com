@@ -1,12 +1,6 @@
 <app-fullscreen>
-  <div class="bg-pink-400 h-screen w-screen relative">
-    <video
-      [playbackRate]="0.65"
-      autoplay
-      muted
-      loop
-      class="absolute inset-0 size-full object-cover"
-    >
+  <div class="bg-pink-400 h-full relative">
+    <video [playbackRate]="0.8" autoplay class="absolute inset-0 size-full object-cover" loop muted>
       <source src="/video/hero.mp4" />
     </video>
 
@@ -14,11 +8,11 @@
 
     <div class="absolute px-4 flex flex-col justify-center inset-0 text-white leading-relaxed">
       <div class="mx-auto container">
-        <div class="text-4xl/12 md:text-8xl/24 font-extralight">
+        <div class="text-4xl/12 md:text-6xl/16 lg:text-8xl/24 font-extralight">
           <div>Fizjoterapia</div>
           <div>uroginekologiczna</div>
         </div>
-        <div class="text-lg/12 md:text-2xl/20 uppercase">Małgorzata Leleń</div>
+        <div class="text-lg/12 md:text-xl/20 lg:text-2xl/20 uppercase">Małgorzata Leleń</div>
       </div>
     </div>
 

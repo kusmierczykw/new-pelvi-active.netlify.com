@@ -1,16 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { MenuItemType } from '../menu-item/menu-item-type';
-import { MenuItem } from '@ui/menu-item/menu-item';
-import { Icon } from '@ui/icon/icon';
 
 @Component({
   selector: 'app-navbar',
-  imports: [MenuItem, Icon],
+  imports: [],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
 export class Navbar {
-  readonly visible = signal(false);
+  readonly visible = signal(true);
 
   readonly items = signal<MenuItemType[]>([
     new MenuItemType({

@@ -1,0 +1,46 @@
+.bubble {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 1.25rem;
+  background: #fff;
+  color: #111;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+  will-change: transform, box-shadow;
+}
+
+/* upewnij się, że anchor może układać elementy */
+.bubble--with-label {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* mały dymek z tekstem */
+.bubble__label {
+  position: relative;
+  padding-right: 0.5rem;
+  color: #00a3ad;
+  line-height: 1;
+  font-weight: bold;
+  font-size: 0.825rem;
+  text-transform: uppercase;
+}
+
+.bubble--float {
+  animation: bubbleFloat 2.6s ease-in-out infinite;
+}
+
+.bubble--float--paused {
+  animation-play-state: paused;
+}
+
+@keyframes bubbleFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}

@@ -1,13 +1,9 @@
-<div class="bg-amber-200">
-  @for (item of items(); track item.id) {
-    <app-menu-item [item]="item" />
-  }
+<div class="container items-center flex mx-auto">
+  <div class="ms-auto px-4 py-12 uppercase text-white font-normal">
+    <div class="grid grid-flow-col gap-10">
+      @for (item of items(); track item.id) {
+        <div>{{ item.label }}</div>
+      }
+    </div>
+  </div>
 </div>
-
-<button (click)="handleToggleClick()">
-  @if (visible()) {
-    <app-icon name="x-lg" />
-  } @else {
-    <app-icon name="list" />
-  }
-</button>

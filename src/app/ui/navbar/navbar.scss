@@ -1,0 +1,29 @@
+.enter {
+  animation: slide-fade 500ms;
+}
+
+.leave {
+  animation: slide-out 500ms;
+}
+
+@keyframes slide-fade {
+  from {
+    opacity: 0;
+    left: -100%;
+  }
+  to {
+    opacity: 1;
+    left: 50%;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    opacity: 1;
+    left: 50%;
+  }
+  to {
+    opacity: 0;
+    left: -100%;
+  }
+}
