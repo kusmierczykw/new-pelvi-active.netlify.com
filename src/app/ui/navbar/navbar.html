@@ -1,0 +1,13 @@
+<div class="bg-amber-200">
+  @for (item of items(); track item.id) {
+    <app-menu-item [item]="item" />
+  }
+</div>
+
+<button (click)="handleToggleClick()">
+  @if (visible()) {
+    <app-icon name="x-lg" />
+  } @else {
+    <app-icon name="list" />
+  }
+</button>

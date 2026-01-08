@@ -1,0 +1,37 @@
+.scrolldown {
+  border: 2px solid #ffffff;
+  border-radius: 30px;
+  height: 56px;
+  margin: 0 auto 8px;
+  text-align: center;
+  width: 38px;
+  display: flex;
+  justify-content: center;
+}
+
+.scrolldown-p1,
+.scrolldown-p2 {
+  animation-duration: 2s;
+  animation-name: scrolldown;
+  animation-iteration-count: infinite;
+  fill: #ffffff;
+}
+
+.scrolldown-p2 {
+  animation-delay: 1s;
+}
+
+@keyframes scrolldown {
+  0% {
+    opacity: 0;
+    transform: translate(0, -8px);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 8px);
+  }
+}
