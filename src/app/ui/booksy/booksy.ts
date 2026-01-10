@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
@@ -7,4 +7,6 @@ import { NgOptimizedImage } from '@angular/common';
   templateUrl: './booksy.html',
   styleUrl: './booksy.scss',
 })
-export class Booksy {}
+export class Booksy {
+  readonly withLabel = input(false);
+}

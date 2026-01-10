@@ -1,0 +1,21 @@
+@reference "tailwindcss";
+
+.menu-item {
+  @apply relative;
+
+  &__label {
+    @apply uppercase text-white font-normal;
+  }
+
+  &__indicator {
+    @apply absolute h-0.5 rounded-full bg-white left-0 -bottom-0.5 w-0;
+  }
+
+  $this: &;
+
+  &:hover {
+    #{$this}__indicator {
+      @apply w-3/4 transition-[width] duration-150 ease-in-out;
+    }
+  }
+}

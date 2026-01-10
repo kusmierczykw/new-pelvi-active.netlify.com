@@ -1,14 +1,24 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MenuItemType } from '../menu-item/menu-item-type';
+import { MenuItem } from '@ui/menu-item/menu-item';
+import { NgOptimizedImage } from '@angular/common';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [MenuItem, NgOptimizedImage],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
 export class Navbar {
   readonly visible = signal(true);
+  readonly breakpointObserver = inject(BreakpointObserver);
+
+  constructor() {
+    this.breakpointObserver.observe(['']).subscribe(() => {
+      console.log('test');
+    });
+  }
 
   readonly items = signal<MenuItemType[]>([
     new MenuItemType({
