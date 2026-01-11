@@ -1,1 +1,35 @@
-<app-fullscreen>1</app-fullscreen>
+<app-fullscreen>
+  <div class="container h-full mx-auto px-4 flex">
+    <div class="grid xl:grid-cols-2 my-auto gap-6">
+      <div class="flex flex-col justify-center">
+        <img
+          class="shadow-lg rounded-xl"
+          ngSrc="/images/malgorzata_lelen.webp"
+          alt="Małgorzata Leleń"
+          height="1024"
+          width="1536"
+        />
+      </div>
+
+      <div class="flex flex-col justify-center gap-6">
+        <h2 class="text-4xl lg:text-6xl font-light text-(--app-primary)">O mnie</h2>
+
+        <div class="text-lg lg:text-xl font-light leading-relaxed text-justify">
+          Nazywam się Małgorzata Leleń. Ukończyłam studia magisterskie na Uniwersytecie Medycznym w
+          Lublinie na kierunku Fizjoterapia. Zajmuję się profilaktyką oraz leczeniem dolegliwości
+          ginekologicznych i urologicznych u kobiet na każdym etapie ich życia, a w szczególności
+          usprawnianiem kobiet w okresie okołoporodowym. Doświadczenie z zakresu uroginekologii i
+          rehabilitacji ogólnej zdobyłam na wielu szkoleniach kursach.
+        </div>
+
+        <div>
+          <a
+            class="cursor-pointer inline-flex bg-(--app-primary) text-white px-4 py-3 shadow-md rounded-sm uppercase"
+          >
+            Kursy i szkolenia
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-fullscreen>
