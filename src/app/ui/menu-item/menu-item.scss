@@ -4,11 +4,11 @@
   @apply relative;
 
   &__label {
-    @apply uppercase text-white font-normal;
+    @apply uppercase font-normal;
   }
 
   &__indicator {
-    @apply absolute h-0.5 rounded-full bg-white left-0 -bottom-0.5 w-0;
+    @apply absolute h-0.5 rounded-full -bottom-0.5 w-0;
   }
 
   $this: &;

@@ -1,15 +1,63 @@
-<div class="container items-center flex mx-auto py-4 px-4">
-  <div class="me-auto">
-    <a class="size-12 inline-block" href="/">
-      <img ngSrc="/images/logo.webp" alt="Logo Pelvi-Active" height="599" width="524" />
-    </a>
-  </div>
+<div class="hidden lg:block">
+  <div class="container items-center flex mx-auto py-4 px-4">
+    <div class="me-auto">
+      <ng-container [ngTemplateOutlet]="logoTemplateRef" />
+    </div>
 
-  <div class="ms-auto px-4">
-    <div class="grid grid-flow-col gap-10">
-      @for (item of items(); track item.id) {
-        <app-menu-item [item]="item" />
-      }
+    <div class="ms-auto px-4">
+      <div class="grid grid-flow-col gap-10 text-white">
+        @for (item of items(); track item.id) {
+          <app-menu-item [item]="item" />
+        }
+      </div>
     </div>
   </div>
 </div>
+
+<div class="lg:hidden">
+  <div class="container items-center flex mx-auto py-4 px-4">
+    <div class="me-auto">
+      <ng-container [ngTemplateOutlet]="logoTemplateRef" />
+    </div>
+
+    <div class="ms-auto text-white">
+      <ng-container [ngTemplateOutlet]="hamburgerTemplateRef" />
+    </div>
+  </div>
+</div>
+
+@if (isMenuOpen()) {
+  <div class="fixed shadow-xl flex items-center bg-white h-full flex-col gap-3 inset-0 text-xl">
+    <div class="container items-center flex mx-auto py-4 px-4">
+      <div class="me-auto">
+        <ng-container [ngTemplateOutlet]="logoTemplateRef" />
+      </div>
+
+      <div class="ms-auto text-(--app-primary)">
+        <ng-container [ngTemplateOutlet]="hamburgerTemplateRef" />
+      </div>
+    </div>
+
+    <div class="my-auto text-center flex gap-4 text-2xl flex-col text-(--app-primary)">
+      @for (item of items(); track item.id) {
+        <app-menu-item [item]="item" variant="primary" [withCenteredIndicator]="true" />
+      }
+    </div>
+  </div>
+}
+
+<ng-template #logoTemplateRef>
+  <a class="size-12 inline-block" href="/">
+    <img ngSrc="/images/logo.webp" alt="Logo Pelvi-Active" height="599" width="524" />
+  </a>
+</ng-template>
+
+<ng-template #hamburgerTemplateRef>
+  <button class="cursor-pointer text-2xl" (click)="handleToggleMenuClick()">
+    @if (!isMenuOpen()) {
+      <app-icon name="justify-right" />
+    } @else {
+      <app-icon name="x-lg" />
+    }
+  </button>
+</ng-template>

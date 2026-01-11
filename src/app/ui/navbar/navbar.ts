@@ -1,22 +1,23 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { MenuItemType } from '../menu-item/menu-item-type';
 import { MenuItem } from '@ui/menu-item/menu-item';
-import { NgOptimizedImage } from '@angular/common';
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
+import { Breakpoint } from '@core/breakpoints/breakpoint';
+import { Icon } from '@ui/icon/icon';
 
 @Component({
   selector: 'app-navbar',
-  imports: [MenuItem, NgOptimizedImage],
+  imports: [MenuItem, NgOptimizedImage, Icon, NgTemplateOutlet],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
-export class Navbar {
-  readonly visible = signal(true);
-  readonly breakpointObserver = inject(BreakpointObserver);
+export class Navbar implements OnInit {
+  readonly isMenuOpen = signal(false);
+  readonly breakpoint = inject(Breakpoint);
 
-  constructor() {
-    this.breakpointObserver.observe(['']).subscribe(() => {
-      console.log('test');
+  ngOnInit() {
+    this.breakpoint.observe('max-md').subscribe(() => {
+      this.isMenuOpen.set(false);
     });
   }
 
@@ -53,7 +54,7 @@ export class Navbar {
     }),
   ]);
 
-  protected handleToggleClick(): void {
-    this.visible.update((value) => !value);
+  protected handleToggleMenuClick(): void {
+    this.isMenuOpen.update((value) => !value);
   }
 }
