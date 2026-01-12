@@ -1,0 +1,65 @@
+.circle-decor {
+  overflow: visible;
+}
+
+.orbit {
+  transform-box: fill-box;
+  transform-origin: center;
+
+  /* stan bazowy taki jak 0% */
+  transform: translate(0, -6px) scale(1);
+  opacity: 0.85;
+
+  animation: orbit 6s linear infinite;
+  animation-fill-mode: both;
+  will-change: transform, opacity;
+}
+
+/* ujemne delay = start od razu w fazie animacji */
+.orbit--1 {
+  animation-duration: 7.5s;
+  animation-delay: 0s;
+}
+.orbit--2 {
+  animation-duration: 6.2s;
+  animation-delay: -0.4s;
+}
+.orbit--3 {
+  animation-duration: 8.4s;
+  animation-delay: -1.1s;
+}
+.orbit--4 {
+  animation-duration: 6.8s;
+  animation-delay: -1.6s;
+}
+
+@keyframes orbit {
+  0% {
+    transform: translate(0, -6px) scale(1);
+    opacity: 0.85;
+  }
+  25% {
+    transform: translate(6px, 0) scale(1.02);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(0, 6px) scale(1);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translate(-6px, 0) scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, -6px) scale(1);
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+}

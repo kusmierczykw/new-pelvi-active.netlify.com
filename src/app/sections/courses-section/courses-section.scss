@@ -1,0 +1,29 @@
+@reference 'tailwindcss';
+
+:host {
+  .courses-section {
+    &__list {
+      @apply relative py-4;
+
+      &::before {
+        @apply absolute h-full left-2 translate-0.5 size-0.5 top-0 bg-(--app-primary) content-[''];
+      }
+
+      &-item {
+        @apply pl-8 relative;
+
+        &-label {
+          @apply text-3xl font-thin text-(--app-primary) py-4 flex items-center;
+
+          &::before {
+            @apply left-0.25 size-5 bg-(--app-primary) content-[''] absolute;
+          }
+        }
+
+        &-content {
+          @apply text-lg lg:text-xl font-light leading-relaxed;
+        }
+      }
+    }
+  }
+}

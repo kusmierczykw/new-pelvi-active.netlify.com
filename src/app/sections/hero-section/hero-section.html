@@ -1,23 +1,21 @@
-<app-fullscreen>
-  <div class="h-full relative">
-    <video [playbackRate]="0.8" autoplay class="absolute inset-0 size-full object-cover" loop muted>
-      <source src="/video/hero_2.mp4" />
-    </video>
+<div class="max-h-[72rem] h-screen relative">
+  <video [playbackRate]="0.8" autoplay class="absolute inset-0 size-full object-cover" loop muted>
+    <source src="/video/hero_2.mp4" />
+  </video>
 
-    <div class="bg-(--app-primary) absolute inset-0 opacity-80"></div>
+  <div class="bg-(--app-primary) absolute inset-0 opacity-80"></div>
 
-    <div class="absolute px-4 flex flex-col justify-center inset-0 text-white leading-relaxed">
-      <div class="mx-auto container">
-        <div class="text-4xl/12 md:text-6xl/16 lg:text-8xl/24 font-extralight">
-          <div>Fizjoterapia</div>
-          <div>uroginekologiczna</div>
-        </div>
-        <div class="text-lg/12 md:text-xl/20 lg:text-2xl/20 uppercase">Małgorzata Leleń</div>
+  <div class="absolute flex flex-col justify-center inset-0 text-white leading-relaxed">
+    <div class="mx-auto px-4 container">
+      <div class="text-4xl/12 md:text-6xl/16 lg:text-8xl/24 font-extralight">
+        <div>Fizjoterapia</div>
+        <div>uroginekologiczna</div>
       </div>
-    </div>
-
-    <div class="absolute left-1/2 -translate-x-1/2 bottom-1/12">
-      <app-scrolling />
+      <div class="text-lg/12 md:text-xl/20 lg:text-2xl/20 uppercase">Małgorzata Leleń</div>
     </div>
   </div>
-</app-fullscreen>
+
+  <div class="absolute left-1/2 -translate-x-1/2 bottom-1/12">
+    <app-scrolling />
+  </div>
+</div>
