@@ -16,9 +16,7 @@ export class Navbar implements OnInit {
   readonly breakpoint = inject(Breakpoint);
 
   ngOnInit() {
-    this.breakpoint.observe('max-md').subscribe(() => {
-      this.isMenuOpen.set(false);
-    });
+    this.breakpointChangeListener();
   }
 
   readonly items = signal<MenuItemType[]>([
@@ -56,5 +54,11 @@ export class Navbar implements OnInit {
 
   protected handleToggleMenuClick(): void {
     this.isMenuOpen.update((value) => !value);
+  }
+
+  private breakpointChangeListener(): void {
+    this.breakpoint.observe('max-md').subscribe(() => {
+      this.isMenuOpen.set(false);
+    });
   }
 }

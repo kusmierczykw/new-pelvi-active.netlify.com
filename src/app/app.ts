@@ -7,6 +7,7 @@ import { AboutMeSection } from './sections/about-me-section/about-me-section';
 import { CoursesSection } from './sections/courses-section/courses-section';
 import { OfferSection } from './sections/offer-section/offer-section';
 import { PricesSection } from './sections/prices-section/prices-section';
+import { ContactSection } from './sections/contact-section/contact-section';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { PricesSection } from './sections/prices-section/prices-section';
     CoursesSection,
     OfferSection,
     PricesSection,
+    ContactSection,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
