@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { SectionContainer } from '@ui/section-container/section-container';
-import { SectionTitle } from '@ui/section-title/section-title';
-import { ContactIcon } from '@ui/contact-icon/contact-icon';
+import { SectionContainer } from '@ui/components/section-container/section-container';
+import { SectionTitle } from '@ui/components/section-title/section-title';
+import { ContactIcon } from '@ui/components/contact-icon/contact-icon';
 
 @Component({
   selector: 'app-contact-section',

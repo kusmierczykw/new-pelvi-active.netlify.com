@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { SectionTitle } from '@ui/section-title/section-title';
-import { Button } from '@ui/button/button';
-import { SectionContainer } from '@ui/section-container/section-container';
+import { SectionTitle } from '@ui/components/section-title/section-title';
+import { Button } from '@ui/components/button/button';
+import { SectionContainer } from '@ui/components/section-container/section-container';
 
 @Component({
   selector: 'app-about-me-section',

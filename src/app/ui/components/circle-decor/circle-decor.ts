@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './circle-decor.html',
   styleUrl: './circle-decor.scss',
 })
-export class CircleDecor {
-
-}
+export class CircleDecor {}

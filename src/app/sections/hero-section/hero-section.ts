@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Scrolling } from '@ui/scrolling/scrolling';
+import { Scrolling } from '@ui/components/scrolling/scrolling';
 
 @Component({
   selector: 'app-hero-section',

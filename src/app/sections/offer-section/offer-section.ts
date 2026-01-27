@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { RevealStagger } from '@ui/components/reveal-stagger/reveal-stagger';
+import { SectionTitle } from '@ui/components/section-title/section-title';
 
 @Component({
   selector: 'app-offer-section',
-  imports: [NgOptimizedImage],
+  imports: [RevealStagger, SectionTitle],
   templateUrl: './offer-section.html',
   styleUrl: './offer-section.scss',
 })

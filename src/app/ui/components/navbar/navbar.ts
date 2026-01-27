@@ -1,9 +1,9 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { MenuItemType } from '../menu-item/menu-item-type';
-import { MenuItem } from '@ui/menu-item/menu-item';
+import { MenuItem } from '@ui/components/menu-item/menu-item';
 import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { Breakpoint } from '@core/breakpoints/breakpoint';
-import { Icon } from '@ui/icon/icon';
+import { Icon } from '@ui/components/icon/icon';
 
 @Component({
   selector: 'app-navbar',

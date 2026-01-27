@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { SectionContainer } from '@ui/section-container/section-container';
-import { SectionTitle } from '@ui/section-title/section-title';
-import { CircleDecor } from '@ui/circle-decor/circle-decor';
+import { SectionContainer } from '@ui/components/section-container/section-container';
+import { SectionTitle } from '@ui/components/section-title/section-title';
+import { CircleDecor } from '@ui/components/circle-decor/circle-decor';
 
 @Component({
   selector: 'app-courses-section',

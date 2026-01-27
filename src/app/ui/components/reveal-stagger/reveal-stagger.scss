@@ -1,0 +1,17 @@
+@reference 'tailwindcss';
+
+.column {
+  @apply bg-white/96 h-full scale-y-0 origin-bottom opacity-0;
+
+  &.visible {
+    @apply scale-y-100 opacity-100 transition-transform;
+  }
+}
+
+.content {
+  @apply opacity-0;
+
+  &.visible {
+    @apply opacity-100 transition-opacity;
+  }
+}

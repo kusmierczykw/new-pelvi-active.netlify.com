@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { Icon } from '@ui/icon/icon';
-import { IconName } from '@ui/icon/icon-name';
+import { Icon } from '@ui/components/icon/icon';
+import { IconName } from '@ui/components/icon/icon-name';
 
 @Component({
   selector: 'app-contact-icon',

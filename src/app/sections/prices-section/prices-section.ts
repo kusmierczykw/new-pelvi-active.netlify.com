@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
-import { SectionContainer } from '@ui/section-container/section-container';
-import { SectionTitle } from '@ui/section-title/section-title';
+import { SectionContainer } from '@ui/components/section-container/section-container';
+import { SectionTitle } from '@ui/components/section-title/section-title';
 import { Guid } from '@core/types';
 
 interface Service {
