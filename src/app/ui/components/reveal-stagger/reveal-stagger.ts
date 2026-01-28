@@ -35,6 +35,6 @@ export class RevealStagger {
   }
 
   protected columnTransitionDelayFor(column: number): number {
-    return this.visible() ? this.delay() + ((column + 1) % this.offset()) * 200 : 0;
+    return this.visible() ? this.delay() / 2 + ((column + 1) % this.offset()) * 200 : 0;
   }
 }
