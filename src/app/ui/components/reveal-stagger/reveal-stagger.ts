@@ -1,11 +1,10 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { ViewportEnterDirective } from '@ui/directives/viewport-enter';
-import { NgOptimizedImage } from '@angular/common';
 import { ViewportLeaveDirective } from '@ui/directives/viewport-leave';
 
 @Component({
   selector: 'app-reveal-stagger',
-  imports: [ViewportEnterDirective, NgOptimizedImage, ViewportLeaveDirective],
+  imports: [ViewportEnterDirective, ViewportLeaveDirective],
   templateUrl: './reveal-stagger.html',
   styleUrl: './reveal-stagger.scss',
 })
@@ -13,19 +12,13 @@ export class RevealStagger {
   readonly delay = input(500);
   readonly src = input('');
   readonly alt = input('');
-  readonly offset = input(5);
-  readonly columnsCount = input(10);
+  readonly offset = input(4);
+  readonly columnsCount = input(5);
   readonly columns = computed(() =>
-    Array(10)
+    Array(this.columnsCount())
       .fill(null)
       .map((_, i) => i),
   );
-
-  readonly contentTransitionDelay = computed(() => {
-    const delay = 1000;
-
-    return this.visible() ? delay + this.delay() : 0;
-  });
 
   readonly columnTransitionDuration = computed(() => {
     return this.visible() ? this.delay() : 0;

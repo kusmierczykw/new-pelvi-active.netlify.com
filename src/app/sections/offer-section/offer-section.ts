@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { RevealStagger } from '@ui/components/reveal-stagger/reveal-stagger';
-import { SectionTitle } from '@ui/components/section-title/section-title';
+import { OfferEntry } from '@ui/components/offer-entry/offer-entry';
 
 @Component({
   selector: 'app-offer-section',
-  imports: [RevealStagger, SectionTitle],
+  imports: [OfferEntry],
   templateUrl: './offer-section.html',
   styleUrl: './offer-section.scss',
 })

@@ -1,30 +1,20 @@
-<div class="max-h-full h-screen relative">
-  <div
-    (viewportEnter)="handleViewportEnter()"
-    (viewportLeave)="handleViewportLeave()"
-    appViewportEnter
-    appViewportLeave
-    class="absolute inset-0"
-  >
-    <img [alt]="alt()" [fill]="true" [ngSrc]="src()" class="size-full object-cover" priority />
+<div
+  (viewportEnter)="handleViewportEnter()"
+  (viewportLeave)="handleViewportLeave()"
+  appViewportEnter
+  appViewportLeave
+  class="absolute inset-0"
+>
+  <ng-content />
 
-    <div class="absolute inset-0 grid grid-cols-10 items-end">
-      @for (column of columns(); track column) {
-        <div
-          [class.visible]="visible()"
-          [style.transition-delay.ms]="columnTransitionDelayFor(column)"
-          [style.transition-duration.ms]="columnTransitionDuration()"
-          class="column"
-        ></div>
-      }
-    </div>
-
-    <div
-      class="absolute inset-0 content"
-      [class.visible]="visible()"
-      [style.transition-delay.ms]="contentTransitionDelay()"
-    >
-      <ng-content />
-    </div>
+  <div class="absolute inset-0 grid grid-cols-5 items-end">
+    @for (column of columns(); track column) {
+      <div
+        [class.visible]="visible()"
+        [style.transition-delay.ms]="columnTransitionDelayFor(column)"
+        [style.transition-duration.ms]="columnTransitionDuration()"
+        class="column"
+      ></div>
+    }
   </div>
 </div>

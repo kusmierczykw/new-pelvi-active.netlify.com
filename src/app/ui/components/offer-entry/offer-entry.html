@@ -1,0 +1,25 @@
+<div class="grid grid-cols-2 h-[70vh]">
+  <div class="flex flex-col justify-center" [class.order-last]="reverse()">
+    <div class="px-16">
+      <app-section-title>
+        <div [class.text-start]="reverse()" [class.text-end]="!reverse()">
+          <ng-content select="[title]" />
+        </div>
+      </app-section-title>
+
+      <div
+        class="mt-6 text-lg lg:text-xl font-light leading-relaxed"
+        [class.text-start]="reverse()"
+        [class.text-end]="!reverse()"
+      >
+        <ng-content select="[content]" />
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-start relative" [class.order-first]="reverse()">
+    <app-reveal-stagger>
+      <img [fill]="true" [ngSrc]="imageSrc()" alt="" class="size-full object-cover" priority />
+    </app-reveal-stagger>
+  </div>
+</div>
