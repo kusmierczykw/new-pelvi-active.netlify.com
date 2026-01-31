@@ -7,13 +7,13 @@
 >
   <ng-content />
 
-  <div class="absolute inset-0 grid grid-cols-5 items-end">
+  <div class="absolute inset-0 flex">
     @for (column of columns(); track column) {
       <div
         [class.visible]="visible()"
         [style.transition-delay.ms]="columnTransitionDelayFor(column)"
         [style.transition-duration.ms]="columnTransitionDuration()"
-        class="column"
+        class="column flex-1"
       ></div>
     }
   </div>
