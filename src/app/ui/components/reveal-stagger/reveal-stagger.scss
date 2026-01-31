@@ -1,9 +1,11 @@
 @reference 'tailwindcss';
 
-.column {
-  @apply bg-(--app-primary)/60 h-full origin-bottom scale-y-100 opacity-100;
+column {
+  @apply bg-(--app-primary)/60 h-full opacity-100;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 
-  &.visible {
-    @apply scale-y-0  transition-transform;
-  }
+.column.visible {
+  clip-path: inset(100% 0 0 0);
 }
