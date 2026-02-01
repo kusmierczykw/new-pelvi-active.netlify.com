@@ -1,11 +1,19 @@
 @reference 'tailwindcss';
 
-.column {
-  @apply bg-(--app-primary)/60 h-full opacity-100;
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+.overlay {
+  opacity: 0.8;
 }
 
-.column.visible {
-  clip-path: inset(100% 0 0 0);
+.col-rect {
+  fill: var(--app-primary);
+  transform-box: fill-box;
+  transform-origin: bottom;
+  transform: scaleY(1);
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.col-rect.visible {
+  transform: scaleY(0);
 }

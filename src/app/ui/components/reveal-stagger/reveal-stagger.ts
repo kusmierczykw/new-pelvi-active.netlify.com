@@ -13,7 +13,7 @@ export class RevealStagger {
   readonly src = input('');
   readonly alt = input('');
   readonly offset = input(4);
-  readonly columnsCount = input(5);
+  readonly columnsCount = input(6);
   readonly columns = computed(() =>
     Array(this.columnsCount())
       .fill(null)
@@ -21,7 +21,7 @@ export class RevealStagger {
   );
 
   readonly columnTransitionDuration = computed(() => {
-    return this.visible() ? this.delay() : 0;
+    return this.delay();
   });
 
   readonly visible = signal(false);

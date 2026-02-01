@@ -7,14 +7,25 @@
 >
   <ng-content />
 
-  <div class="absolute inset-0 flex">
-    @for (column of columns(); track column) {
-      <div
-        [class.visible]="visible()"
-        [style.transition-delay.ms]="columnTransitionDelayFor(column)"
-        [style.transition-duration.ms]="columnTransitionDuration()"
-        class="column flex-1"
-      ></div>
-    }
+  <!-- overlay z opacity na CAŁOŚCI -->
+  <div class="absolute inset-0 overlay">
+    <svg
+      class="h-full w-full"
+      preserveAspectRatio="none"
+      [attr.viewBox]="'0 0 ' + columnsCount() + ' 100'"
+    >
+      @for (column of columns(); track column) {
+        <rect
+          class="col-rect"
+          [class.visible]="visible()"
+          [attr.x]="column"
+          y="0"
+          width="1"
+          height="100"
+          [style.transition-delay.ms]="columnTransitionDelayFor(column)"
+          [style.transition-duration.ms]="columnTransitionDuration()"
+        />
+      }
+    </svg>
   </div>
 </div>
