@@ -1,4 +1,3 @@
-import { RouterLink } from '@core/types';
 import { Guid } from '@core/types/guid';
 
 export class MenuItemType {
@@ -6,7 +5,7 @@ export class MenuItemType {
     private readonly data: {
       id: Guid;
       label: string;
-      routerLink: RouterLink;
+      anchor: string;
     },
   ) {}
 
@@ -18,7 +17,7 @@ export class MenuItemType {
     return this.data.label;
   }
 
-  get routerLink(): RouterLink {
-    return this.data.routerLink;
+  get anchor(): string {
+    return this.data.anchor;
   }
 }

@@ -1,4 +1,4 @@
-<div class="menu-item">
+<a class="menu-item" [href]="anchor()">
   <div
     class="menu-item__label"
     [class.text-(--app-primary)]="isPrimary()"
@@ -17,4 +17,4 @@
     [class.bg-(--app-primary)]="isPrimary()"
     [class.bg-white]="isDefault()"
   ></div>
-</div>
+</a>

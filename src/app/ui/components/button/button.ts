@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
   templateUrl: './button.html',
   styleUrl: './button.scss',
 })
-export class Button {}
+export class Button {
+  readonly clickEvent = output<void>();
+
+  protected handleClick() {
+    this.clickEvent.emit();
+  }
+}
