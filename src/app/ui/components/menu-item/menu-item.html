@@ -1,4 +1,4 @@
-<a class="menu-item" [href]="anchor()">
+<a class="menu-item" [href]="anchor()" (click)="handleClick()">
   <div
     class="menu-item__label"
     [class.text-(--app-primary)]="isPrimary()"

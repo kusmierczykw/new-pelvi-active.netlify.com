@@ -1,36 +1,24 @@
-import { Component, inject, NgZone, OnDestroy, OnInit, PLATFORM_ID, signal } from '@angular/core';
+// navbar.ts
+import { isPlatformBrowser, NgClass, NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
+import { Component, DestroyRef, inject, NgZone, OnInit, PLATFORM_ID, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { fromEvent } from 'rxjs';
+import { auditTime, map, startWith } from 'rxjs/operators';
+
+import { Breakpoint } from '@core/breakpoints/breakpoint';
 import { MenuItemType } from '../menu-item/menu-item-type';
 import { MenuItem } from '@ui/components/menu-item/menu-item';
-import { isPlatformBrowser, NgClass, NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
-import { Breakpoint } from '@core/breakpoints/breakpoint';
 import { Icon } from '@ui/components/icon/icon';
 
 @Component({
   selector: 'app-navbar',
-  imports: [MenuItem, NgOptimizedImage, Icon, NgTemplateOutlet, NgClass],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
+  imports: [NgTemplateOutlet, MenuItem, NgClass, Icon, NgOptimizedImage],
 })
-export class Navbar implements OnInit, OnDestroy {
+export class Navbar implements OnInit {
   readonly isMenuOpen = signal(false);
   readonly isScrolled = signal(false);
-  readonly breakpoint = inject(Breakpoint);
-
-  private readonly zone = inject(NgZone);
-  private readonly platform = inject(PLATFORM_ID);
-
-  private onScroll?: () => void;
-
-  ngOnInit() {
-    if (isPlatformBrowser(this.platform)) {
-      this.breakpointChangeListener();
-      this.setupScrollListener();
-    }
-  }
-
-  ngOnDestroy(): void {
-    this.onScroll?.();
-  }
 
   readonly items = signal<MenuItemType[]>([
     new MenuItemType({
@@ -65,33 +53,50 @@ export class Navbar implements OnInit, OnDestroy {
     }),
   ]);
 
-  private setupScrollListener(): void {
-    const threshold = 50;
+  private readonly breakpoint = inject(Breakpoint);
+  private readonly zone = inject(NgZone);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly platform = inject(PLATFORM_ID);
 
-    this.zone.runOutsideAngular(() => {
-      const handler = () => {
-        const y = window.scrollY || document.documentElement.scrollTop || 0;
-        const next = y > threshold;
-
-        if (next !== this.isScrolled()) {
-          this.zone.run(() => this.isScrolled.set(next));
-        }
-      };
-
-      window.addEventListener('scroll', handler, { passive: true });
-      handler();
-
-      this.onScroll = () => window.removeEventListener('scroll', handler);
-    });
+  ngOnInit() {
+    if (isPlatformBrowser(this.platform)) {
+      this.breakpointChangeListener();
+      this.setupScrollEffects();
+    }
   }
 
   protected handleToggleMenuClick(): void {
-    this.isMenuOpen.update((value) => !value);
+    this.isMenuOpen.update((v) => !v);
+    document.body.style.overflow = this.isMenuOpen() ? 'hidden' : '';
+  }
+
+  protected handleOverlayMenuClick(): void {
+    this.isMenuOpen.set(false);
+
+    document.body.style.overflow = '';
+  }
+
+  private setupScrollEffects(): void {
+    this.zone.runOutsideAngular(() => {
+      fromEvent(window, 'scroll')
+        .pipe(
+          auditTime(50),
+          map(() => window.scrollY > 16),
+          startWith(window.scrollY > 16),
+          takeUntilDestroyed(this.destroyRef),
+        )
+        .subscribe((scrolled) => {
+          if (scrolled !== this.isScrolled()) {
+            this.zone.run(() => this.isScrolled.set(scrolled));
+          }
+        });
+    });
   }
 
   private breakpointChangeListener(): void {
     this.breakpoint.observe('max-md').subscribe(() => {
       this.isMenuOpen.set(false);
+      document.body.style.overflow = '';
     });
   }
 }

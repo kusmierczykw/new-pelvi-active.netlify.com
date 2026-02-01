@@ -1,25 +1,40 @@
-<div class="grid grid-cols-2 h-[70vh]">
-  <div class="flex flex-col justify-center" [class.order-last]="reverse()">
-    <div class="px-16">
+<div class="grid grid-cols-1 lg:grid-cols-2 lg:h-[70vh]">
+  <div
+    [class.lg:order-1]="reverse()"
+    [class.lg:order-2]="!reverse()"
+    class="order-1 lg:order-0 relative h-64 lg:h-auto"
+  >
+    <div class="lg:hidden">
+      <img [fill]="true" [ngSrc]="imageSrc()" alt="" class="size-full object-cover" priority />
+    </div>
+
+    <div class="hidden lg:block">
+      <app-reveal-stagger>
+        <img [fill]="true" [ngSrc]="imageSrc()" alt="" class="size-full object-cover" priority />
+      </app-reveal-stagger>
+    </div>
+  </div>
+
+  <div
+    class="order-2 flex flex-col justify-center"
+    [class.lg:order-1]="!reverse()"
+    [class.lg:order-2]="reverse()"
+  >
+    <div class="px-6 sm:px-10 lg:px-16 py-10 lg:py-0">
       <app-section-title>
-        <div [class.text-start]="reverse()" [class.text-end]="!reverse()">
+        <!-- na mobile zawsze start; na lg zależnie od reverse -->
+        <div class="text-start" [class.lg:text-start]="reverse()" [class.lg:text-end]="!reverse()">
           <ng-content select="[title]" />
         </div>
       </app-section-title>
 
       <div
-        class="mt-6 text-lg lg:text-xl font-light leading-relaxed"
-        [class.text-start]="reverse()"
-        [class.text-end]="!reverse()"
+        class="mt-6 text-base sm:text-lg lg:text-xl font-light leading-relaxed text-start"
+        [class.lg:text-start]="reverse()"
+        [class.lg:text-end]="!reverse()"
       >
         <ng-content select="[content]" />
       </div>
     </div>
-  </div>
-
-  <div class="flex justify-start relative" [class.order-first]="reverse()">
-    <app-reveal-stagger>
-      <img [fill]="true" [ngSrc]="imageSrc()" alt="" class="size-full object-cover" priority />
-    </app-reveal-stagger>
   </div>
 </div>

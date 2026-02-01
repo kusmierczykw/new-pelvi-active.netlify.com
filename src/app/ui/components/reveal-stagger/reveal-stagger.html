@@ -7,23 +7,22 @@
 >
   <ng-content />
 
-  <!-- overlay z opacity na CAŁOŚCI -->
   <div class="absolute inset-0 overlay">
     <svg
+      [attr.viewBox]="'0 0 ' + columnsCount() + ' 100'"
       class="h-full w-full"
       preserveAspectRatio="none"
-      [attr.viewBox]="'0 0 ' + columnsCount() + ' 100'"
     >
       @for (column of columns(); track column) {
         <rect
-          class="col-rect"
-          [class.visible]="visible()"
           [attr.x]="column"
-          y="0"
-          width="1"
-          height="100"
+          [class.visible]="visible()"
           [style.transition-delay.ms]="columnTransitionDelayFor(column)"
           [style.transition-duration.ms]="columnTransitionDuration()"
+          class="col-rect"
+          height="100"
+          width="1"
+          y="0"
         />
       }
     </svg>

@@ -1,7 +1,7 @@
 @reference "tailwindcss";
 
 .menu-item {
-  @apply relative;
+  @apply relative inline-flex;
 
   &__label {
     @apply uppercase font-normal;

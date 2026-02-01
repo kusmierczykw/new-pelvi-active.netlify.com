@@ -1,19 +1,24 @@
 <header
-  class="fixed top-0 inset-x-0 z-50 transition-all duration-300"
-  [ngClass]="{ 'bg-(--app-primary)/80 backdrop-blur shadow-lg': isScrolled() }"
+  [class.backdrop-blur-md]="isScrolled() && !isMenuOpen()"
+  [class.bg-transparent]="!isScrolled() || isMenuOpen()"
+  [class.opacity-0]="isMenuOpen()"
+  [class.pointer-events-none]="isMenuOpen()"
+  [class.shadow-lg]="isScrolled() && !isMenuOpen()"
+  [ngClass]="{ 'bg-(--app-primary)/90': isScrolled() && !isMenuOpen() }"
+  class="fixed lg:sticky top-0 inset-x-0 z-40 transition-all duration-300"
 >
   <div class="hidden lg:block">
-    <div class="container items-center flex mx-auto py-4 px-4">
+    <div
+      class="container h-20 items-center flex mx-auto px-4 transition-all duration-300"
+      [class.py-4]="!isScrolled()"
+      [class.py-2]="isScrolled()"
+    >
       <div class="me-auto">
         <ng-container [ngTemplateOutlet]="logoTemplateRef" />
       </div>
 
-      <div class="ms-auto px-4">
-        <div
-          class="grid grid-flow-col gap-10"
-          [class.text-white]="!isScrolled()"
-          [class.text-(--app-primary)]="isScrolled()"
-        >
+      <div class="ms-auto px-4 text-white">
+        <div class="grid grid-flow-col gap-10">
           @for (item of items(); track item.id) {
             <app-menu-item [item]="item" />
           }
@@ -23,25 +28,29 @@
   </div>
 
   <div class="lg:hidden">
-    <div class="container items-center flex mx-auto py-4 px-4">
+    <div
+      class="container h-16 items-center flex mx-auto px-4 transition-all duration-300"
+      [class.py-4]="!isScrolled()"
+      [class.py-2]="isScrolled()"
+    >
       <div class="me-auto">
         <ng-container [ngTemplateOutlet]="logoTemplateRef" />
       </div>
 
-      <div
-        class="ms-auto"
-        [class.text-white]="!isScrolled()"
-        [class.text-(--app-primary)]="isScrolled()"
-      >
+      <div class="ms-auto text-white">
         <ng-container [ngTemplateOutlet]="hamburgerTemplateRef" />
       </div>
     </div>
   </div>
 </header>
 
+<div aria-hidden="true" class="block lg:hidden h-16"></div>
+
 @if (isMenuOpen()) {
-  <div class="fixed shadow-xl flex items-center bg-white h-full flex-col gap-3 inset-0 text-xl">
-    <div class="container items-center flex mx-auto py-4 px-4">
+  <div
+    class="fixed shadow-xl flex items-center bg-white h-full flex-col gap-3 inset-0 text-xl z-50"
+  >
+    <div class="container h-16 items-center flex mx-auto py-4 px-4">
       <div class="me-auto">
         <ng-container [ngTemplateOutlet]="logoTemplateRef" />
       </div>
@@ -53,7 +62,12 @@
 
     <div class="my-auto text-center flex gap-4 text-2xl flex-col text-(--app-primary)">
       @for (item of items(); track item.id) {
-        <app-menu-item [item]="item" variant="primary" [withCenteredIndicator]="true" />
+        <app-menu-item
+          (clickEvent)="handleOverlayMenuClick()"
+          [item]="item"
+          variant="primary"
+          [withCenteredIndicator]="true"
+        />
       }
     </div>
   </div>
