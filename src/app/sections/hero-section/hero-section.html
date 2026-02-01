@@ -1,5 +1,12 @@
 <div class="max-h-full h-screen relative">
-  <video [playbackRate]="0.8" autoplay class="absolute inset-0 size-full object-cover" loop muted>
+  <video
+    [autoplay]="true"
+    [controls]="false"
+    [loop]="true"
+    [muted]="true"
+    [playbackRate]="0.8"
+    class="absolute inset-0 size-full object-cover"
+  >
     <source src="/video/hero_0.mp4" />
   </video>
 
