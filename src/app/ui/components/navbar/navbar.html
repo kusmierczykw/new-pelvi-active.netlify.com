@@ -1,30 +1,43 @@
-<div class="hidden lg:block">
-  <div class="container items-center flex mx-auto py-4 px-4">
-    <div class="me-auto">
-      <ng-container [ngTemplateOutlet]="logoTemplateRef" />
-    </div>
+<header
+  class="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+  [ngClass]="{ 'bg-(--app-primary)/80 backdrop-blur shadow-lg': isScrolled() }"
+>
+  <div class="hidden lg:block">
+    <div class="container items-center flex mx-auto py-4 px-4">
+      <div class="me-auto">
+        <ng-container [ngTemplateOutlet]="logoTemplateRef" />
+      </div>
 
-    <div class="ms-auto px-4">
-      <div class="grid grid-flow-col gap-10 text-white">
-        @for (item of items(); track item.id) {
-          <app-menu-item [item]="item" />
-        }
+      <div class="ms-auto px-4">
+        <div
+          class="grid grid-flow-col gap-10"
+          [class.text-white]="!isScrolled()"
+          [class.text-(--app-primary)]="isScrolled()"
+        >
+          @for (item of items(); track item.id) {
+            <app-menu-item [item]="item" />
+          }
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="lg:hidden">
-  <div class="container items-center flex mx-auto py-4 px-4">
-    <div class="me-auto">
-      <ng-container [ngTemplateOutlet]="logoTemplateRef" />
-    </div>
+  <div class="lg:hidden">
+    <div class="container items-center flex mx-auto py-4 px-4">
+      <div class="me-auto">
+        <ng-container [ngTemplateOutlet]="logoTemplateRef" />
+      </div>
 
-    <div class="ms-auto text-white">
-      <ng-container [ngTemplateOutlet]="hamburgerTemplateRef" />
+      <div
+        class="ms-auto"
+        [class.text-white]="!isScrolled()"
+        [class.text-(--app-primary)]="isScrolled()"
+      >
+        <ng-container [ngTemplateOutlet]="hamburgerTemplateRef" />
+      </div>
     </div>
   </div>
-</div>
+</header>
 
 @if (isMenuOpen()) {
   <div class="fixed shadow-xl flex items-center bg-white h-full flex-col gap-3 inset-0 text-xl">

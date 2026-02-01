@@ -1,22 +1,35 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, NgZone, OnDestroy, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { MenuItemType } from '../menu-item/menu-item-type';
 import { MenuItem } from '@ui/components/menu-item/menu-item';
-import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
+import { isPlatformBrowser, NgClass, NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { Breakpoint } from '@core/breakpoints/breakpoint';
 import { Icon } from '@ui/components/icon/icon';
 
 @Component({
   selector: 'app-navbar',
-  imports: [MenuItem, NgOptimizedImage, Icon, NgTemplateOutlet],
+  imports: [MenuItem, NgOptimizedImage, Icon, NgTemplateOutlet, NgClass],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
-export class Navbar implements OnInit {
+export class Navbar implements OnInit, OnDestroy {
   readonly isMenuOpen = signal(false);
+  readonly isScrolled = signal(false);
   readonly breakpoint = inject(Breakpoint);
 
+  private readonly zone = inject(NgZone);
+  private readonly platform = inject(PLATFORM_ID);
+
+  private onScroll?: () => void;
+
   ngOnInit() {
-    this.breakpointChangeListener();
+    if (isPlatformBrowser(this.platform)) {
+      this.breakpointChangeListener();
+      this.setupScrollListener();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.onScroll?.();
   }
 
   readonly items = signal<MenuItemType[]>([
@@ -51,6 +64,26 @@ export class Navbar implements OnInit {
       anchor: 'b060abf2-70ff-4e72-bb4b-e72a4ddefc13',
     }),
   ]);
+
+  private setupScrollListener(): void {
+    const threshold = 50;
+
+    this.zone.runOutsideAngular(() => {
+      const handler = () => {
+        const y = window.scrollY || document.documentElement.scrollTop || 0;
+        const next = y > threshold;
+
+        if (next !== this.isScrolled()) {
+          this.zone.run(() => this.isScrolled.set(next));
+        }
+      };
+
+      window.addEventListener('scroll', handler, { passive: true });
+      handler();
+
+      this.onScroll = () => window.removeEventListener('scroll', handler);
+    });
+  }
 
   protected handleToggleMenuClick(): void {
     this.isMenuOpen.update((value) => !value);
