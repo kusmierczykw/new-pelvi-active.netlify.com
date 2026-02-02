@@ -1,0 +1,35 @@
+@if (visible()) {
+  <div class="fixed w-full bottom-0 z-40 bg-white shadow-md">
+    <div class="relative p-6">
+      <div class="font-bold">Polityka plików cookies</div>
+
+      <div class="flex items-center text-sm">
+        <div>
+          <div>Używamy ciasteczek, aby zapewnić najlepszą jakość korzystania z naszej witryny.</div>
+
+          <div>
+            <div class="mr-1 inline-block">Aby dowiedzieć się więcej, zapoznaj się z naszą</div>
+            <div class="hover:text-primary inline-block underline">polityką prywatności</div>
+            <div class="inline-block">.</div>
+          </div>
+        </div>
+
+        <div class="ml-auto inline-flex gap-3">
+          <button
+            class="cursor-pointer inline-flex text-(--app-primary)px-4 py-3 rounded-sm uppercase"
+            (click)="handleCloseClick()"
+          >
+            Zamknij
+          </button>
+
+          <button
+            class="cursor-pointer inline-flex bg-(--app-primary) text-white px-4 py-3 shadow-md rounded-sm uppercase"
+            (click)="handleAcceptClick()"
+          >
+            Akceptuj
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
