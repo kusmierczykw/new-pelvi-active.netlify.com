@@ -1,13 +1,14 @@
-<div class="max-h-full h-screen relative">
+<div class="max-h-full h-screen relative overflow-hidden">
   <video
-    [autoplay]="true"
-    [controls]="false"
-    [loop]="true"
-    [muted]="true"
-    [playbackRate]="0.8"
+    #videoElementRef
     class="absolute inset-0 size-full object-cover"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
   >
-    <source src="/video/hero_0.mp4" />
+    <source src="/video/hero_0.mp4" type="video/mp4" />
   </video>
 
   <div class="bg-(--app-primary) absolute inset-0 opacity-80"></div>
